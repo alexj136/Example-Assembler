@@ -9,6 +9,8 @@ format_string: .asciz "%d\n"
 
 main:
 
+	# Example usage 1
+
 	movl $15, %ecx			# Move 15 to %ecx, we will use this to check the
 							# result of our test - we must do this for each test
 							# because printf clobbers %ecx
@@ -24,7 +26,7 @@ main:
 	pushl $format_string	# 20 != 10
 	call printf
 
-	#-------------
+	# Example usage 2
 
 	movl $15, %ecx			# Move 15 to %ecx, we will use this to check the
 							# result of our test - we must do this for each test
@@ -41,6 +43,8 @@ main:
 	pushl $format_string	# 10 = 10
 	call printf
 
-	movl $1, %eax			# make an exit call
+	# Exit
+
+	movl $1, %eax
 	movl $0, %ebx
 	int $0x80
