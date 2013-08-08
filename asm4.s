@@ -43,6 +43,46 @@ main:
 	pushl $format_string	# 10 = 10
 	call printf
 
+	# Example usage 3
+
+	movl $4, %eax			# right hand side
+
+	push %eax
+
+	movl $2, %eax			# left hand side, we have: 2 > 4
+
+	pop %ebx
+
+	movl $0, %ecx
+	movl $1, %edx
+	cmpl %ebx, %eax
+	cmovg %edx, %ecx
+	movl %ecx, %eax
+
+	pushl %eax				# print the value of %eax - should be 0 because
+	pushl $format_string	# 2 > 4 is false
+	call printf
+
+	# Example usage 4
+
+	movl $2, %eax			# right hand side
+
+	push %eax
+
+	movl $4, %eax			# left hand side, we have: 4 > 2
+
+	pop %ebx
+
+	movl $0, %ecx
+	movl $1, %edx
+	cmpl %ebx, %eax
+	cmovg %edx, %ecx
+	movl %ecx, %eax
+
+	pushl %eax				# print the value of %eax - should be 1 because
+	pushl $format_string	# 4 > 2 is true
+	call printf
+
 	# Exit
 
 	movl $1, %eax
