@@ -1,12 +1,13 @@
 
 .text
 
-format_string: .asciz "%d\n"
+printf_str: .asciz "%d\n"
 
 .globl main
 
 main:
 
+	# BEGIN PRINT STATEMENT 0
 	# BEGIN ARITHMETIC EXPRESSION 0
 	# BEGIN ARITHMETIC EXPRESSION 2
 	# BEGIN TERNARY EXPRESSION 0
@@ -61,11 +62,11 @@ main:
 	idivl %ebx
 	movl %edx, %eax
 	# END ARITHMETIC EXPRESSION 0
-
-	# Print the value of %eax and return
 	pushl %eax
-	pushl $format_string
+	pushl $printf_str
 	call printf
+	# END PRINT STATEMENT 0
+
 	movl $1, %eax
 	movl $0, %ebx
 	int $0x80
